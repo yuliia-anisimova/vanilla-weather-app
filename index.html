@@ -11,41 +11,47 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
-      <div class="weather-app-wraper">
+      <div class="weather-app">
         <div class="row">
           <div class="col-6">
             <h1>Lviv</h1>
-            <ul>
-              <li>Monday 10:00</li>
-              <li>Cloudy</li>
-              <li>Humidity: 85%, Wind: 19 km/h</li>
+            <ul class="data-list">
+              <li class="data-list-item">Friday, 17:04</li>
+              <li class="data-list-item">Cloudy</li>
+              <li class="data-list-item">Humidity: 70%, Wind: 10 km/h</li>
             </ul>
           </div>
-          <div class="col-6 main-temp">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt=""
-            />
-            <strong>11</strong>
-            <span>°C</span>
+          <div class="col-6">
+            <div class="d-flex">
+              <img class="main-icon" src="" alt="" />
+              <span class="temperature">2</span>
+              <span class="units">°C | °F</span>
+            </div>
           </div>
         </div>
-        <small
-          >This project was coded by Yuliia Anisimova and is
-          <a
-            href="https://github.com/yuliia-anisimova/vanilla-weather-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            >open-sourced on GitHub</a
-          ></small
-        >
+        <p class="info">
+          <small
+            >This project was coded by Yuliia Anisimova and is
+            <a
+              href="https://github.com/yuliia-anisimova/vanilla-weather-app"
+              target="_blank"
+              rel="noopener noreferrer"
+              >open-sourced on GitHub</a
+            ></small
+          >
+        </p>
       </div>
     </div>
-    <script src="src/app.js"></script>
   </body>
 </html>
