@@ -33,6 +33,9 @@ body {
 
 .data-list-item {
   list-style: none;
+}
+
+.data-list-item::first-letter {
   text-transform: capitalize;
 }
 
