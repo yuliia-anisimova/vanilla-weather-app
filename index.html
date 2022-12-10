@@ -25,17 +25,22 @@
       <div class="weather-app">
         <div class="row">
           <div class="col-6">
-            <h1>Lviv</h1>
+            <h1 id="city"></h1>
             <ul class="data-list">
               <li class="data-list-item">Friday, 17:04</li>
-              <li class="data-list-item">Cloudy</li>
-              <li class="data-list-item">Humidity: 70%, Wind: 10 km/h</li>
+              <li class="data-list-item" id="description"></li>
+              <li class="data-list-item">
+                Humidity: <span id="humidity"></span>%
+              </li>
+              <li class="data-list-item">
+                Wind: <span id="wind-speed"></span> meter/sec
+              </li>
             </ul>
           </div>
           <div class="col-6">
             <div class="d-flex">
               <img class="main-icon" src="" alt="" />
-              <span class="temperature">2</span>
+              <span class="temperature" id="temperature">2</span>
               <span class="units">°C | °F</span>
             </div>
           </div>
@@ -53,5 +58,6 @@
         </p>
       </div>
     </div>
+    <script src="src/app.js"></script>
   </body>
 </html>
