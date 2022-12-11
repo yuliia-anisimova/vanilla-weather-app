@@ -5,8 +5,8 @@ body {
   height: 100vh;
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-image: url("https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  backdrop-filter: blur(10px);
+  font-size: 15px;
+  background-image: url("/images/background-image.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,8 +16,8 @@ body {
   max-width: 800px;
   margin: 30px auto;
   padding: 30px;
-  background: rgba(71, 71, 71, 0.6);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+  color: rgb(255, 255, 255);
   border-radius: 20px;
 }
 
@@ -31,8 +31,9 @@ body {
   border: none;
   padding: 5px 15px;
   border-radius: 25px;
-  background: rgba(63, 63, 63, 0.6);
-  color: #ffffff;
+  background: rgba(100, 100, 100, 0.6);
+  color: rgb(255, 255, 255);
+  font-family: inherit;
   font-size: larger;
 }
 
@@ -41,7 +42,7 @@ body {
   border: none;
   border-radius: 50%;
   padding: 6px 11px;
-  background: rgba(63, 63, 63, 0.6);
+  background: rgba(100, 100, 100, 0.6);
   color: #8c8c8c;
   font-size: larger;
 }
@@ -90,14 +91,23 @@ body {
   top: 50px;
 }
 
+a {
+  text-decoration: none;
+  color: rgb(171, 171, 171);
+}
+
+a:hover {
+  color: rgb(193, 193, 193);
+}
+
 .active {
-  color: #ffffff;
+  color: rgb(255, 255, 255);;
   cursor: default;
   text-decoration: none;
 }
 
 .active:hover {
-  color: #ffffff;
+  color: rgb(255, 255, 255);;
   text-decoration: none;
 }
 
@@ -105,5 +115,10 @@ body {
   text-align: center;
   margin: 20px 0 0 0;
   padding: 0;
-  color: #bbbaba;
+  color: rgb(164, 163, 163);
+}
+
+.info a {
+  color: rgb(104, 103, 103);
+  text-decoration: none;
 }
