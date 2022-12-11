@@ -30,21 +30,57 @@ function displayTemperature(response) {
   let date = document.querySelector("#date");
   let mainIcon = document.querySelector("#main-weather-icon");
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  city.innerHTML = response.data.name;
-  description.innerHTML = response.data.weather[0].description;
-  humidity.innerHTML = response.data.main.humidity;
+  celsiusTemp = response.data.temperature.current;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+  city.innerHTML = response.data.city;
+  description.innerHTML = response.data.condition.description;
+  humidity.innerHTML = response.data.temperature.humidity;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
-  date.innerHTML = formattedDate(response.data.dt * 1000);
-  mainIcon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  mainIcon.setAttribute("alt", response.data.weather[0].description);
+  date.innerHTML = formattedDate(response.data.time * 1000);
+  mainIcon.setAttribute("src", response.data.condition.icon_url);
+  mainIcon.setAttribute("alt", response.data.condition.icon);
 }
 
-let apiKey = "62b43b991fa7a8556437d03ee15777fa";
-let city = "Lviv";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "ef4t4e655f4ce0a5cae7ba67db1b7fo3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
-axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#search-input");
+  search(cityInput.value);
+}
+
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  fahrenheit.classList.remove("active");
+  celsius.classList.add("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusTemp = null;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+let fahrenheit = document.querySelector("#fahrenheit-link");
+fahrenheit.addEventListener("click", showFahrenheitTemp);
+
+let celsius = document.querySelector("#celsius-link");
+celsius.addEventListener("click", showCelsiusTemp);
+
+search("Lviv");
