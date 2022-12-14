@@ -21,6 +21,36 @@ function formattedDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let weatherForecast = document.querySelector("#weather-forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+
+  let forecastHtml = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      ` <div class="col">
+              <div class="weather-forecast-day">
+                <span>${day}</span>
+              </div>
+              <img
+                src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/shower-rain-night.png"
+                alt=""
+                width="50"
+              />
+              <div class="weather-forecast-temp">
+                <span class="forecast-temp-max">1°</span>
+                <span class="forecast-temp-min">-3°</span>
+              </div>
+            </div>`;
+  });
+
+  forecastHtml = forecastHtml + `</div>`;
+  weatherForecast.innerHTML = forecastHtml;
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let city = document.querySelector("#city");
@@ -84,3 +114,4 @@ let celsius = document.querySelector("#celsius-link");
 celsius.addEventListener("click", showCelsiusTemp);
 
 search("Lviv");
+displayForecast();
