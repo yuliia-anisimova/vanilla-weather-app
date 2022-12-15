@@ -140,7 +140,7 @@ a:hover {
 
 .weather-forecast-temp {
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 25px;
 }
 
