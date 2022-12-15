@@ -92,26 +92,7 @@ body {
   position: relative;
   top: 50px;
   font-size: 25px;
-}
-
-a {
-  text-decoration: none;
-  color: rgb(171, 171, 171);
-}
-
-a:hover {
-  color: rgb(193, 193, 193);
-}
-
-.active {
-  color: rgb(255, 255, 255);
-  cursor: default;
-  text-decoration: none;
-}
-
-.active:hover {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
+  opacity: 0.7;
 }
 
 .info {
