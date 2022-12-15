@@ -21,34 +21,55 @@ function formattedDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
-function displayForecast() {
-  let weatherForecast = document.querySelector("#weather-forecast");
+function formattedDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let weatherForecast = document.querySelector("#weather-forecast");
+  let dailyForecast = response.data.daily;
 
   let forecastHtml = `<div class="row">`;
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      ` <div class="col">
+  dailyForecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHtml =
+        forecastHtml +
+        ` <div class="col-2">
               <div class="weather-forecast-day">
-                <span>${day}</span>
+                <span>${formattedDay(forecastDay.time)}</span>
               </div>
               <img
-                src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/shower-rain-night.png"
-                alt=""
+                src="${forecastDay.condition.icon_url}"
+                alt="${forecastDay.condition.icon}"
                 width="50"
               />
               <div class="weather-forecast-temp">
-                <span class="forecast-temp-max">1°</span>
-                <span class="forecast-temp-min">-3°</span>
+                <span class="forecast-temp-max">${Math.round(
+                  forecastDay.temperature.maximum
+                )}°</span>
+                <span class="forecast-temp-min">${Math.round(
+                  forecastDay.temperature.minimum
+                )}°</span>
               </div>
             </div>`;
+    }
   });
 
   forecastHtml = forecastHtml + `</div>`;
   weatherForecast.innerHTML = forecastHtml;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "ef4t4e655f4ce0a5cae7ba67db1b7fo3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -70,6 +91,8 @@ function displayTemperature(response) {
   date.innerHTML = formattedDate(response.data.time * 1000);
   mainIcon.setAttribute("src", response.data.condition.icon_url);
   mainIcon.setAttribute("alt", response.data.condition.icon);
+
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
@@ -114,4 +137,3 @@ let celsius = document.querySelector("#celsius-link");
 celsius.addEventListener("click", showCelsiusTemp);
 
 search("Lviv");
-displayForecast();
